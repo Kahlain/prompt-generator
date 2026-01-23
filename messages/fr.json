@@ -1,0 +1,309 @@
+{
+  "metadata": {
+    "title": "Generateur de Prompts CRQ",
+    "description": "Generez des prompts IA structures et de haute qualite avec le cadre CRQ (Contexte-Raffinement-Qualite)"
+  },
+  "header": {
+    "title": "Generateur de Prompts Texte",
+    "subtitle": "Cadre CRQ (Contexte-Raffinement-Qualite)",
+    "tagline": "Remplissez le formulaire ci-dessous pour generer votre prompt personnalise",
+    "documentation": "Nos Notes"
+  },
+  "nav": {
+    "switchLanguage": "Changer de langue"
+  },
+  "intro": {
+    "title": "Qu'est-ce que cet outil ?",
+    "paragraph1": "Ce generateur de prompts texte est un outil gratuit concu pour vous aider a creer des instructions claires, detaillees et efficaces pour les grands modeles de langage (LLM) comme ChatGPT, Gemini et Claude.",
+    "paragraph2": "En structurant votre demande avec notre cadre CRQ (Contexte-Raffinement-Qualite), vous pouvez ameliorer considerablement la precision et la pertinence de la reponse de l'IA.",
+    "paragraph3": "Un bon prompt est la cle pour exploiter tout le potentiel de l'IA. Ce generateur vous guide dans le processus de fourniture du contexte et des contraintes necessaires."
+  },
+  "common": {
+    "noResults": "Aucun resultat trouve.",
+    "useCustom": "Utiliser une valeur personnalisee"
+  },
+  "form": {
+    "context": {
+      "title": "Variables de Contexte",
+      "required": "Requis",
+      "role": {
+        "label": "Role ou Perspective Souhaite",
+        "placeholder": "Selectionnez ou entrez un role ou une perspective",
+        "tooltip": "Specifiez le role, la perspective ou l'expertise requis pour la tache. Par exemple : 'Redacteur de contenu', 'Specialiste SEO' ou 'Expert marketing'.",
+        "helper": "ex: Definissez la competence requise pour la tache, 'Agissez comme un strategiste marketing pour rediger une campagne sur les reseaux sociaux.'"
+      },
+      "background": {
+        "label": "Informations de Contexte",
+        "placeholder": "Entrez les informations de contexte",
+        "tooltip": "Fournissez le contexte en decrivant votre entreprise, votre secteur et toute information pertinente pour la tache.",
+        "helper": "ex: Decrivez votre parcours ou le contexte de votre entreprise, votre secteur d'activite et toute information utile."
+      },
+      "task": {
+        "label": "Tache de Creation de Contenu",
+        "placeholder": "Entrez la tache de creation de contenu",
+        "tooltip": "Definissez la tache de creation de contenu specifique que vous souhaitez realiser. Soyez aussi detaille que possible.",
+        "helper": "ex: Redigez un article de blog sur [Sujet], creez une description de produit ou concevez une infographie."
+      }
+    },
+    "refinement": {
+      "title": "Variables de Raffinement",
+      "optional": "Optionnel",
+      "geoBoost": {
+        "label": "Optimisation GEO",
+        "active": "Toujours Actif",
+        "description": "Vos prompts sont automatiquement optimises pour l'Optimisation Generative des Moteurs (GEO). Cela aide l'IA a creer du contenu qui performe mieux dans les moteurs de recherche et systemes de recommandation alimentes par l'IA, en incorporant des donnees structurees, des hierarchies claires et une richesse semantique.",
+        "tooltip": "Activez cette option pour ajouter des instructions specifiques optimisant le contenu pour l'Optimisation Generative des Moteurs (GEO)."
+      },
+      "tone": {
+        "label": "Ton ou Style de Sortie",
+        "placeholder": "Selectionnez ou entrez un ton",
+        "helper": "ex: Informatif, Persuasif, Divertissant, Educatif"
+      },
+      "audience": {
+        "label": "Profil de l'Audience",
+        "placeholder": "Selectionnez ou entrez un profil d'audience",
+        "helper": "ex: Personnes technophiles interessees par l'IA"
+      },
+      "audienceGeo": {
+        "label": "Contexte Geographique de l'Audience",
+        "placeholder": "Entrez le contexte geographique",
+        "helper": "ex: Marche nord-americain, Union europeenne"
+      },
+      "contentFormats": {
+        "label": "Formats de Contenu",
+        "placeholder": "Selectionnez ou entrez un format de contenu",
+        "helper": "ex: Articles de blog, Newsletters, Publications sur les reseaux sociaux"
+      },
+      "writingFramework": {
+        "label": "Cadre d'Ecriture",
+        "placeholder": "Selectionnez un cadre d'ecriture",
+        "helper": "Choisissez un cadre pour structurer votre contenu"
+      },
+      "reasoningFramework": {
+        "label": "Cadre de Raisonnement",
+        "placeholder": "Selectionnez un cadre de raisonnement",
+        "helper": "Choisissez un cadre pour guider le raisonnement de l'IA"
+      },
+      "variations": {
+        "label": "Variations et Limites de Contenu",
+        "placeholder": "Entrez les variations ou limites",
+        "helper": "ex: Limiter a 800 mots, Creer 3 variations"
+      },
+      "examples": {
+        "label": "Exemples a Suivre",
+        "placeholder": "Entrez des exemples ou references",
+        "helper": "Fournissez des exemples ou references pour guider l'IA"
+      }
+    },
+    "actions": {
+      "generate": "Generer",
+      "reset": "Reinitialiser",
+      "testData": "Donnees Test"
+    },
+    "validation": {
+      "required": "Veuillez remplir le(s) champ(s) obligatoire(s) suivant(s) : {fields}"
+    }
+  },
+  "output": {
+    "title": "Prompt Genere",
+    "copy": "Copier dans le Presse-papiers",
+    "copied": "Copie !"
+  },
+  "stats": {
+    "title": "Statistiques du Prompt",
+    "tokens": "Tokens de Prompt Estimes",
+    "characters": "Caracteres",
+    "words": "Mots",
+    "avgTokenLength": "Longueur moyenne des tokens",
+    "note1": "\"Tokens de Prompt Estimes\" indique le nombre de tokens pour ce prompt genere. Cette estimation concerne l'entree du prompt et peut affecter les couts d'utilisation.",
+    "note2": "Les tokens sont les unites de base du traitement de texte pour les modeles d'IA. Ce comptage est une estimation basee sur une methode de tokenisation simplifiee."
+  },
+  "usage": {
+    "title": "Comment Utiliser le Prompt",
+    "step1": {
+      "title": "Copiez le Prompt",
+      "description": "Cliquez sur \"Copier dans le Presse-papiers\" pour copier le texte du prompt genere."
+    },
+    "step2": {
+      "title": "Collez dans Votre Outil IA",
+      "description": "Collez le contenu dans l'interface de votre LLM ou agent IA prefere."
+    },
+    "step3": {
+      "title": "Interagissez avec l'IA",
+      "description": "Suivez les instructions de l'agent tout au long du processus de creation de contenu. Pour passer des etapes, tapez simplement \"Procedez.\""
+    },
+    "step4": {
+      "title": "Finalisez et Testez",
+      "description": "Apres avoir genere le contenu initial, demandez a l'agent de \"Tester\" pour simuler differentes perceptions d'audience."
+    },
+    "note": "Ce prompt est concu pour une collaboration humain-IA interactive et peut ne pas etre ideal pour une execution systeme directe."
+  },
+  "techniques": {
+    "title": "Techniques Globales Utilisees",
+    "intro": "Le generateur de prompts utilise une approche structuree, collaborative et reflexive pour la creation de contenu :",
+    "framework": {
+      "title": "Raisonnement et Ecriture Bases sur des Cadres",
+      "description": "Selectionnez un cadre specifique ou laissez l'IA determiner le plus adapte."
+    },
+    "audience": {
+      "title": "Developpement de Contenu Centre sur l'Audience",
+      "description": "Adaptez le contenu pour resonner profondement avec les segments d'audience cibles."
+    },
+    "directives": {
+      "title": "Directives et Lignes Directrices Claires",
+      "description": "Instructions completes pour eviter les pieges courants et maintenir une haute qualite."
+    },
+    "feedback": {
+      "title": "Boucle de Retour Iterative",
+      "description": "Amelioration continue a travers de multiples revisions."
+    },
+    "language": {
+      "title": "Injection de Langage Dynamique",
+      "description": "Dictionnaire personnalise pour assurer une sortie naturelle, fraiche et engageante."
+    }
+  },
+  "faq": {
+    "title": "Questions Frequemment Posees",
+    "q1": {
+      "question": "Qu'est-ce que le cadre CRQ (Contexte-Raffinement-Qualite) ?",
+      "answer": "Le cadre CRQ est une approche systematique de l'ingenierie des prompts. Il signifie Contexte, Raffinement et Qualite. Il garantit que chaque prompt fournit a l'IA suffisamment d'informations de fond (Contexte), des instructions detaillees sur le ton, le style et le format (Raffinement), ainsi que des exemples ou contraintes clairs pour assurer une sortie de haute qualite (Qualite)."
+    },
+    "q2": {
+      "question": "Comment utiliser ce generateur de prompts ?",
+      "answer": "1. Remplissez la section 'Variables de Contexte' avec le role, le contexte et la tache. 2. Optionnellement, ajoutez des 'Variables de Raffinement' comme le ton, l'audience et le format. 3. Cliquez sur 'Generer' pour creer votre prompt. 4. Copiez et utilisez-le avec votre outil IA prefere."
+    },
+    "q3": {
+      "question": "Qui peut beneficier d'un generateur de prompts structure ?",
+      "answer": "Toute personne interagissant avec les grands modeles de langage (LLM) peut en beneficier. Cela inclut les marketeurs digitaux, createurs de contenu, developpeurs, etudiants, chercheurs et professionnels."
+    }
+  },
+  "footer": {
+    "copyright": "Inocta.io | Generateur de Prompts CRQ",
+    "year": "2024",
+    "poweredBy": "Propulsé par"
+  },
+  "theme": {
+    "light": "Clair",
+    "dark": "Sombre",
+    "system": "Systeme"
+  },
+  "frameworks": {
+    "writing": {
+      "aiPick": {
+        "name": "Laisser l'IA choisir un cadre d'ecriture",
+        "description": "Choisissez cette option pour que l'IA recommande l'approche d'ecriture la plus adaptee."
+      },
+      "threeAct": {
+        "name": "Structure en 3 Actes",
+        "description": "Une technique narrative en trois actes : exposition, confrontation et resolution."
+      },
+      "fiveWs": {
+        "name": "5W (Qui, Quoi, Quand, Ou, Pourquoi)",
+        "description": "Assure que le contenu repond aux questions fondamentales sur un sujet."
+      },
+      "aida": {
+        "name": "AIDA (Attention, Interet, Desir, Action)",
+        "description": "Se concentre sur les etapes par lesquelles passe un consommateur lors d'une decision d'achat."
+      },
+      "fab": {
+        "name": "FAB (Caracteristiques, Avantages, Benefices)",
+        "description": "Met en avant les caracteristiques d'un produit ou service, leurs avantages et benefices."
+      },
+      "gps": {
+        "name": "GPS (Objectif, Promesse, Support)",
+        "description": "Structure le contenu en definissant un objectif, une promesse et un support."
+      },
+      "pas": {
+        "name": "PAS (Probleme, Agitation, Solution)",
+        "description": "Identifie un probleme, l'agite et presente une solution."
+      },
+      "slap": {
+        "name": "SLAP (Stop, Regarde, Agis, Achete)",
+        "description": "Cree du contenu qui arrete l'audience, la fait regarder, l'incite a agir et mene a l'achat."
+      },
+      "stori": {
+        "name": "STORI (Narration)",
+        "description": "Utilise des techniques narratives pour engager et connecter emotionnellement."
+      }
+    },
+    "reasoning": {
+      "aiPick": {
+        "name": "Laisser l'IA choisir un cadre de raisonnement",
+        "description": "Laissez l'IA recommander l'approche de raisonnement la plus adaptee."
+      },
+      "chainOfThought": {
+        "name": "Chaine de Pensee (CoT)",
+        "description": "Utiliser pour des problemes complexes pouvant etre decomposes en etapes sequentielles."
+      },
+      "iterative": {
+        "name": "Raffinement Iteratif",
+        "description": "Ideal pour les projets necessitant plusieurs revisions pour affiner la sortie."
+      },
+      "qStar": {
+        "name": "Raisonnement Q-star",
+        "description": "Ideal pour structurer le contenu autour de questions cles pour plus de clarte."
+      },
+      "reflective": {
+        "name": "Raisonnement Reflexif",
+        "description": "Utiliser pour des analyses critiques et une amelioration continue."
+      },
+      "summarization": {
+        "name": "Synthese et Distillation",
+        "description": "Utile pour condenser de grandes quantites d'information en points cles."
+      }
+    }
+  },
+  "roles": {
+    "digitalMarketing": "Responsable Marketing Digital",
+    "softwareEngineer": "Ingenieur Logiciel",
+    "cfo": "Directeur Financier (CFO)",
+    "socialMedia": "Specialiste Reseaux Sociaux",
+    "contentWriter": "Redacteur de Contenu",
+    "artDirector": "Directeur Artistique",
+    "customerSupport": "Representant Support Client",
+    "dataScientist": "Data Scientist"
+  },
+  "tones": {
+    "informative": "Informatif",
+    "persuasive": "Persuasif",
+    "entertaining": "Divertissant",
+    "educational": "Educatif"
+  },
+  "formats": {
+    "blogPosts": "Articles de Blog",
+    "bulletPoints": "Points a Puces",
+    "caseStudies": "Etudes de Cas",
+    "codeBlocks": "Blocs de Code",
+    "ebooks": "E-books",
+    "emails": "Emails",
+    "howToGuides": "Guides Pratiques",
+    "infographics": "Infographies",
+    "json": "JSON",
+    "markdownModel": "Modele Markdown",
+    "newsletters": "Newsletters",
+    "podcastScripts": "Scripts de Podcast",
+    "pressReleases": "Communiques de Presse",
+    "productDescriptions": "Descriptions de Produits",
+    "qaFormats": "Formats Q&R",
+    "slides": "Diapositives",
+    "socialMediaPosts": "Publications Reseaux Sociaux",
+    "userManuals": "Manuels Utilisateur",
+    "videoScript": "Script Video",
+    "webinars": "Webinaires",
+    "whitepapers": "Livres Blancs"
+  },
+  "geoRegions": {
+    "global": "Audience Mondiale",
+    "northAmerica": "Amerique du Nord",
+    "europe": "Europe",
+    "asiaPacific": "Asie-Pacifique",
+    "latinAmerica": "Amerique Latine",
+    "middleEast": "Moyen-Orient",
+    "africa": "Afrique",
+    "usaCanada": "USA et Canada",
+    "ukIreland": "Royaume-Uni et Irlande",
+    "frenchSpeaking": "Marches Francophones",
+    "germanSpeaking": "Marches Germanophones",
+    "spanishSpeaking": "Marches Hispanophones"
+  }
+}

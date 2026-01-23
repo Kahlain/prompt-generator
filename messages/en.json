@@ -1,0 +1,309 @@
+{
+  "metadata": {
+    "title": "CRQ Prompt Generator",
+    "description": "Generate high-quality, structured AI prompts using the CRQ (Context-Refinement-Quality) Framework"
+  },
+  "header": {
+    "title": "Text Prompt Generator",
+    "subtitle": "CRQ (Context-Refinement-Quality) Framework",
+    "tagline": "Fill in the form below to generate your tailored prompt",
+    "documentation": "Our Notes"
+  },
+  "nav": {
+    "switchLanguage": "Switch language"
+  },
+  "intro": {
+    "title": "What is This Tool?",
+    "paragraph1": "This Text Prompt Generator is a free tool designed to help you create clear, detailed, and effective instructions for Large Language Models (LLMs) like ChatGPT, Gemini, and Claude.",
+    "paragraph2": "By structuring your request using our CRQ (Context-Refinement-Quality) Framework, you can significantly improve the accuracy and relevance of the AI's response, saving you time and effort.",
+    "paragraph3": "A great prompt is the key to unlocking the full potential of AI. This generator guides you through the process of providing the necessary context and constraints, turning a simple idea into a powerful, machine-readable instruction."
+  },
+  "common": {
+    "noResults": "No results found.",
+    "useCustom": "Use custom value"
+  },
+  "form": {
+    "context": {
+      "title": "Context Variables",
+      "required": "Required",
+      "role": {
+        "label": "Desired Role or Perspective",
+        "placeholder": "Select or enter a role or perspective",
+        "tooltip": "Specify the role, perspective, or expertise required for the task. For example, 'Content Writer,' 'SEO Specialist,' or 'Marketing Expert.'",
+        "helper": "e.g., Define the required skill you need for the task, 'Act as a marketing strategist to draft a social media campaign.'"
+      },
+      "background": {
+        "label": "Background Information",
+        "placeholder": "Enter the background information",
+        "tooltip": "Provide context by describing your company, industry, and any relevant information for the task. Include key details such as company size, market position, goals, and any unique challenges.",
+        "helper": "e.g., Describe your background or your company's context, your industry, and any valuable information to align with the task."
+      },
+      "task": {
+        "label": "Content Creation Task",
+        "placeholder": "Enter the content creation task",
+        "tooltip": "Define the specific content creation task you want to be performed. Be as detailed as possible.",
+        "helper": "e.g., Write a blog post about [Subject], create a product description, or design an infographic."
+      }
+    },
+    "refinement": {
+      "title": "Refinement Variables",
+      "optional": "Optional",
+      "geoBoost": {
+        "label": "GEO Optimization",
+        "active": "Always On",
+        "description": "Your prompts are automatically optimized for Generative Engine Optimization (GEO). This helps AI create content that performs better in AI-powered search engines and recommendation systems by incorporating structured data, clear hierarchies, and semantic richness.",
+        "tooltip": "Enable this to add specific instructions to your prompt, guiding the AI to create content optimized for Generative Engine Optimization (GEO)."
+      },
+      "tone": {
+        "label": "Output Tone or Style",
+        "placeholder": "Select or enter a tone",
+        "helper": "e.g., Informative, Persuasive, Entertaining, Educational"
+      },
+      "audience": {
+        "label": "Audience Profile",
+        "placeholder": "Select or enter an audience profile",
+        "helper": "e.g., Tech-savvy individuals interested in AI"
+      },
+      "audienceGeo": {
+        "label": "Audience Geographical Context",
+        "placeholder": "Enter geographical context",
+        "helper": "e.g., North American market, European Union"
+      },
+      "contentFormats": {
+        "label": "Content Formats",
+        "placeholder": "Select or enter content format",
+        "helper": "e.g., Blog Posts, Newsletters, Social Media Posts"
+      },
+      "writingFramework": {
+        "label": "Writing Framework",
+        "placeholder": "Select a writing framework",
+        "helper": "Choose a framework to structure your content"
+      },
+      "reasoningFramework": {
+        "label": "Reasoning Framework",
+        "placeholder": "Select a reasoning framework",
+        "helper": "Choose a framework to guide AI reasoning"
+      },
+      "variations": {
+        "label": "Content Variations & Limits",
+        "placeholder": "Enter variations or limits",
+        "helper": "e.g., Limit to 800 words, Create 3 variations"
+      },
+      "examples": {
+        "label": "Examples to Follow",
+        "placeholder": "Enter examples or references",
+        "helper": "Provide examples or references for the AI to follow"
+      }
+    },
+    "actions": {
+      "generate": "Generate",
+      "reset": "Reset",
+      "testData": "Test Data"
+    },
+    "validation": {
+      "required": "Please fill in the following mandatory field(s): {fields}"
+    }
+  },
+  "output": {
+    "title": "Generated Prompt",
+    "copy": "Copy to Clipboard",
+    "copied": "Copied!"
+  },
+  "stats": {
+    "title": "Prompt Statistics",
+    "tokens": "Estimated Prompt Tokens",
+    "characters": "Characters",
+    "words": "Words",
+    "avgTokenLength": "Average token length",
+    "note1": "\"Estimated Prompt Tokens\" indicates the number of tokens for this generated prompt. This estimate is for prompt input and may impact usage costs in some AI models.",
+    "note2": "Tokens are the basic units of text processing for AI models. This token count is an estimate based on a simplified tokenization method."
+  },
+  "usage": {
+    "title": "How to Use the Prompt",
+    "step1": {
+      "title": "Copy the Prompt",
+      "description": "Click \"Copy to Clipboard\" to copy the generated prompt text."
+    },
+    "step2": {
+      "title": "Paste into Your AI Tool",
+      "description": "Paste the content into your preferred LLM or AI agent's user interface."
+    },
+    "step3": {
+      "title": "Engage with the AI",
+      "description": "Follow the agent's instructions as it guides you through the content creation process. To skip any steps, simply type \"Just proceed.\""
+    },
+    "step4": {
+      "title": "Finalize and Test",
+      "description": "After generating the initial content, ask the agent to \"Test it\" to simulate different audience perceptions and get feedback."
+    },
+    "note": "This prompt is designed for interactive human-AI collaboration and may not be ideal for direct system execution."
+  },
+  "techniques": {
+    "title": "Overall Techniques Used",
+    "intro": "The prompt generator employs a structured, collaborative, and reflective approach for content creation:",
+    "framework": {
+      "title": "Framework-Based Reasoning & Writing",
+      "description": "Select a specific reasoning or writing framework, or let the AI determine the most suitable one."
+    },
+    "audience": {
+      "title": "Audience and Persona-Centric Content Development",
+      "description": "Tailor content to resonate deeply with targeted audience segments."
+    },
+    "directives": {
+      "title": "Clear Directives and Guidelines",
+      "description": "Comprehensive instructions to avoid common pitfalls and maintain high content quality."
+    },
+    "feedback": {
+      "title": "Iterative Feedback Loop",
+      "description": "Continuous improvement through multiple revisions."
+    },
+    "language": {
+      "title": "Dynamic Language Injection",
+      "description": "Custom dictionary to ensure natural, fresh, and engaging output."
+    }
+  },
+  "faq": {
+    "title": "Frequently Asked Questions",
+    "q1": {
+      "question": "What is the CRQ (Context-Refinement-Quality) Framework?",
+      "answer": "The CRQ Framework is a systematic approach to prompt engineering. It stands for Context, Refinement, and Quality. It ensures that every prompt you create provides the AI with sufficient background information (Context), detailed instructions on tone, style, and format (Refinement), and clear examples or constraints to ensure a high-quality output (Quality)."
+    },
+    "q2": {
+      "question": "How do I use this prompt generator?",
+      "answer": "1. Fill in the 'Context Variables' section with the role, background, and task. 2. Optionally, add 'Refinement Variables' like tone, audience, and format. 3. Click 'Generate' to create your prompt. 4. Copy and use it with your preferred AI tool."
+    },
+    "q3": {
+      "question": "Who can benefit from using a structured prompt generator?",
+      "answer": "Anyone who interacts with Large Language Models (LLMs) can benefit. This includes digital marketers, content creators, developers, students, researchers, and business professionals."
+    }
+  },
+  "footer": {
+    "copyright": "Inocta.io | CRQ Prompt Generator",
+    "year": "2024",
+    "poweredBy": "Powered by"
+  },
+  "theme": {
+    "light": "Light",
+    "dark": "Dark",
+    "system": "System"
+  },
+  "frameworks": {
+    "writing": {
+      "aiPick": {
+        "name": "Let the AI pick a Writing Framework for you",
+        "description": "Choose this option to let the AI recommend the most suitable writing approach based on your specific task."
+      },
+      "threeAct": {
+        "name": "3-Act Structure",
+        "description": "A storytelling technique with three acts: setup, confrontation, and resolution."
+      },
+      "fiveWs": {
+        "name": "5W's (Who, What, When, Where, Why)",
+        "description": "Ensures content answers the fundamental questions about a topic."
+      },
+      "aida": {
+        "name": "AIDA (Attention, Interest, Desire, Action)",
+        "description": "Focuses on the stages a consumer goes through when making a purchase decision."
+      },
+      "fab": {
+        "name": "FAB (Features, Advantages, Benefits)",
+        "description": "Highlights product or service features, their advantages, and benefits."
+      },
+      "gps": {
+        "name": "GPS (Goal, Promise, Support)",
+        "description": "Structures content by defining a goal, making a promise, and providing support."
+      },
+      "pas": {
+        "name": "PAS (Problem, Agitation, Solution)",
+        "description": "Identifies a problem, agitates it, and presents a solution."
+      },
+      "slap": {
+        "name": "SLAP (Stop, Look, Act, Purchase)",
+        "description": "Creates content that stops the audience, makes them look, prompts action, and leads to purchase."
+      },
+      "stori": {
+        "name": "STORI (Storytelling)",
+        "description": "Leverages storytelling techniques to engage and connect emotionally."
+      }
+    },
+    "reasoning": {
+      "aiPick": {
+        "name": "Let the AI pick a Reasoning Framework for you",
+        "description": "Let the AI recommend the most suitable reasoning approach based on your specific task."
+      },
+      "chainOfThought": {
+        "name": "Chain-of-Thought (CoT)",
+        "description": "Use when tackling complex problems that can be broken down into sequential steps."
+      },
+      "iterative": {
+        "name": "Iterative Refinement",
+        "description": "Best for projects that require multiple revisions to refine and perfect the output."
+      },
+      "qStar": {
+        "name": "Q-star Reasoning",
+        "description": "Ideal for structuring content around key questions to enhance clarity and purpose."
+      },
+      "reflective": {
+        "name": "Reflective Reasoning",
+        "description": "Employ for critical analyses and continuous improvement throughout the process."
+      },
+      "summarization": {
+        "name": "Summarization and Distillation",
+        "description": "Useful when you need to condense large amounts of information into key takeaways."
+      }
+    }
+  },
+  "roles": {
+    "digitalMarketing": "Digital Marketing Manager",
+    "softwareEngineer": "Software Engineer",
+    "cfo": "Chief Financial Officer (CFO)",
+    "socialMedia": "Social Media Specialist",
+    "contentWriter": "Content Writer",
+    "artDirector": "Art Director",
+    "customerSupport": "Customer Support Representative",
+    "dataScientist": "Data Scientist"
+  },
+  "tones": {
+    "informative": "Informative",
+    "persuasive": "Persuasive",
+    "entertaining": "Entertaining",
+    "educational": "Educational"
+  },
+  "formats": {
+    "blogPosts": "Blog Posts",
+    "bulletPoints": "Bullet Points",
+    "caseStudies": "Case Studies",
+    "codeBlocks": "Code Blocks",
+    "ebooks": "E-books",
+    "emails": "Emails",
+    "howToGuides": "How-To Guides",
+    "infographics": "Infographics",
+    "json": "JSON",
+    "markdownModel": "Markdown Model",
+    "newsletters": "Newsletters",
+    "podcastScripts": "Podcast Scripts",
+    "pressReleases": "Press Releases",
+    "productDescriptions": "Product Descriptions",
+    "qaFormats": "Q&A Formats",
+    "slides": "Slides",
+    "socialMediaPosts": "Social Media Posts",
+    "userManuals": "User Manuals",
+    "videoScript": "Video Script",
+    "webinars": "Webinars",
+    "whitepapers": "Whitepapers"
+  },
+  "geoRegions": {
+    "global": "Global Audience",
+    "northAmerica": "North America",
+    "europe": "Europe",
+    "asiaPacific": "Asia-Pacific",
+    "latinAmerica": "Latin America",
+    "middleEast": "Middle East",
+    "africa": "Africa",
+    "usaCanada": "USA & Canada",
+    "ukIreland": "UK & Ireland",
+    "frenchSpeaking": "French-Speaking Markets",
+    "germanSpeaking": "German-Speaking Markets",
+    "spanishSpeaking": "Spanish-Speaking Markets"
+  }
+}
