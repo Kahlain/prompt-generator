@@ -150,19 +150,36 @@ export const removePhrases = [
   'Promptly',
 ];
 
+export interface BannedWordsSectionOptions {
+  locale: 'en' | 'fr';
+  translations: {
+    avoid: string;
+    exclude: string;
+    remove: string;
+  };
+}
+
 /**
  * Generate the banned words section for the prompt
+ * Returns empty string for French locale (English-only blacklist)
  */
-export function generateBannedWordsSection(): string {
-  return `- Avoid the following common phrases and words:
+export function generateBannedWordsSection(options: BannedWordsSectionOptions): string {
+  // Skip banned words for French locale - the list is English-only
+  if (options.locale === 'fr') {
+    return '';
+  }
+
+  const { translations } = options;
+
+  return `- ${translations.avoid}:
 
 ${avoidPhrases.join(', ')}.
 
-- Completely Exclude these specific overused terms:
+- ${translations.exclude}:
 
 ${excludeTerms.join(', ')}.
 
-- Remove these phrases that often appear clichéd or generic:
+- ${translations.remove}:
 
 ${removePhrases.join(', ')}.`;
 }

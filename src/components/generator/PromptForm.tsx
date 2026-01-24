@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useCallback, useRef } from 'react';
-import { useTranslations } from 'next-intl';
+import { useTranslations, useLocale } from 'next-intl';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
@@ -34,6 +34,7 @@ const formSchema = z.object({
 
 export function PromptForm() {
   const t = useTranslations();
+  const locale = useLocale() as 'en' | 'fr';
   const [generatedPrompt, setGeneratedPrompt] = useState('');
   const [error, setError] = useState<string | null>(null);
   const [isGenerating, setIsGenerating] = useState(false);
@@ -75,6 +76,45 @@ export function PromptForm() {
       await new Promise((resolve) => setTimeout(resolve, 300));
 
       const result = buildPrompt(data, {
+        locale,
+        promptTemplate: {
+          actAs: t('prompt.actAs'),
+          background: t('prompt.background'),
+          yourTask: t('prompt.yourTask'),
+          tone: t('prompt.tone'),
+          audience: t('prompt.audience'),
+          geoContext: t('prompt.geoContext'),
+          formats: t('prompt.formats'),
+          writingFramework: t('prompt.writingFramework'),
+          reasoningFramework: t('prompt.reasoningFramework'),
+          variations: t('prompt.variations'),
+          examples: t('prompt.examples'),
+          beforeStarting: t('prompt.beforeStarting'),
+          confirmInitiation: t('prompt.confirmInitiation'),
+          askClarification: t('prompt.askClarification'),
+          suggestAnswers: t('prompt.suggestAnswers'),
+          postCreation: t('prompt.postCreation'),
+          reviewOutput: t('prompt.reviewOutput'),
+          openToIterations: t('prompt.openToIterations'),
+          testingPersonas: t('prompt.testingPersonas'),
+          simulatePersonas: t('prompt.simulatePersonas'),
+          provideFeedback: t('prompt.provideFeedback'),
+          otherConsiderations: t('prompt.otherConsiderations'),
+          geoConsideration: t('prompt.geoConsideration'),
+          factualResponses: t('prompt.factualResponses'),
+          qualityStandards: t('prompt.qualityStandards'),
+          geoBoostTitle: t('prompt.geoBoostTitle'),
+          geoBoostStats: t('prompt.geoBoostStats'),
+          geoBoostCite: t('prompt.geoBoostCite'),
+          geoBoostLanguage: t('prompt.geoBoostLanguage'),
+          geoBoostStructure: t('prompt.geoBoostStructure'),
+          geoBoostTerminology: t('prompt.geoBoostTerminology'),
+          geoBoostCoverage: t('prompt.geoBoostCoverage'),
+          geoBoostQuotable: t('prompt.geoBoostQuotable'),
+          bannedWordsAvoid: t('prompt.bannedWordsAvoid'),
+          bannedWordsExclude: t('prompt.bannedWordsExclude'),
+          bannedWordsRemove: t('prompt.bannedWordsRemove'),
+        },
         aiPickWritingFramework: t('frameworks.writing.aiPick.description'),
         aiPickReasoningFramework: t('frameworks.reasoning.aiPick.description'),
         requiredFieldsError: (fields: string) =>
@@ -100,7 +140,7 @@ export function PromptForm() {
         outputRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
       }, 100);
     },
-    [t]
+    [t, locale]
   );
 
   const handleReset = useCallback(() => {

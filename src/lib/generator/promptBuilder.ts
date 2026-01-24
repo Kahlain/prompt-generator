@@ -1,5 +1,44 @@
-import { generateBannedWordsSection } from './bannedWords';
+import { generateBannedWordsSection, type BannedWordsSectionOptions } from './bannedWords';
 import { isAiPickFramework } from './frameworks';
+
+export interface PromptTemplateStrings {
+  actAs: string;
+  background: string;
+  yourTask: string;
+  tone: string;
+  audience: string;
+  geoContext: string;
+  formats: string;
+  writingFramework: string;
+  reasoningFramework: string;
+  variations: string;
+  examples: string;
+  beforeStarting: string;
+  confirmInitiation: string;
+  askClarification: string;
+  suggestAnswers: string;
+  postCreation: string;
+  reviewOutput: string;
+  openToIterations: string;
+  testingPersonas: string;
+  simulatePersonas: string;
+  provideFeedback: string;
+  otherConsiderations: string;
+  geoConsideration: string;
+  factualResponses: string;
+  qualityStandards: string;
+  geoBoostTitle: string;
+  geoBoostStats: string;
+  geoBoostCite: string;
+  geoBoostLanguage: string;
+  geoBoostStructure: string;
+  geoBoostTerminology: string;
+  geoBoostCoverage: string;
+  geoBoostQuotable: string;
+  bannedWordsAvoid: string;
+  bannedWordsExclude: string;
+  bannedWordsRemove: string;
+}
 
 export interface PromptFormData {
   // Required context fields
@@ -58,50 +97,80 @@ function transformReasoningFramework(
 /**
  * Generate the GEO boost section for the prompt
  */
-function generateGeoBoostSection(): string {
+function generateGeoBoostSection(template: PromptTemplateStrings): string {
   return `
-##GEO Optimization Guidelines:
-- Include specific statistics and data points from authoritative sources
-- Cite credible references and studies where applicable
-- Use clear, direct language that AI systems can easily parse
-- Structure content with clear headings and logical flow
-- Include relevant technical terminology naturally
-- Provide comprehensive coverage of the topic
-- Use quotable statements that can be easily extracted`;
+${template.geoBoostTitle}:
+- ${template.geoBoostStats}
+- ${template.geoBoostCite}
+- ${template.geoBoostLanguage}
+- ${template.geoBoostStructure}
+- ${template.geoBoostTerminology}
+- ${template.geoBoostCoverage}
+- ${template.geoBoostQuotable}`;
+}
+
+interface AppendixOptions {
+  includeGeoBoost: boolean;
+  locale: 'en' | 'fr';
+  template: PromptTemplateStrings;
 }
 
 /**
  * Generate the standard prompt appendix with instructions
  */
-function generatePromptAppendix(includeGeoBoost: boolean): string {
+function generatePromptAppendix(options: AppendixOptions): string {
+  const { includeGeoBoost, locale, template } = options;
+
+  const bannedWordsSection = generateBannedWordsSection({
+    locale,
+    translations: {
+      avoid: template.bannedWordsAvoid,
+      exclude: template.bannedWordsExclude,
+      remove: template.bannedWordsRemove,
+    },
+  });
+
   let appendix = `
 
-##Before starting:
-- Confirm initiation with me.
-- Feel free to ask for clarification.
-- Suggest potential answers for each query based on my context.
+${template.beforeStarting}:
+- ${template.confirmInitiation}
+- ${template.askClarification}
+- ${template.suggestAnswers}
 
-##Post-creation:
-- I will review the initial output.
-- Be open to iterations for refining the content.
+${template.postCreation}:
+- ${template.reviewOutput}
+- ${template.openToIterations}
 
-##Testing on Personas:
-- Simulate how three personas perceive the content.
-- Provide feedback and suggestions.
+${template.testingPersonas}:
+- ${template.simulatePersonas}
+- ${template.provideFeedback}
 
-##Other Considerations:
-- Use the audience's geographical input to evaluate cultural tone adjustments, laws to highlight, or any other elements you need to consider.
-- Ensure that the responses are grounded in verifiable facts and refrain from generating speculative or fictional content, prioritizing accuracy and reliability in the output
+${template.otherConsiderations}:
+- ${template.geoConsideration}
+- ${template.factualResponses}
 
-Focus on upholding the high-quality standards detailed above, respecting the token limit. Indicate the commencement of each phase for smooth collaboration. Bold any changes you suggest in the text.
+${template.qualityStandards}
 
-${generateBannedWordsSection()}`;
+${bannedWordsSection}`;
 
   if (includeGeoBoost) {
-    appendix += generateGeoBoostSection();
+    appendix += generateGeoBoostSection(template);
   }
 
   return appendix;
+}
+
+export interface BuildPromptOptions {
+  locale: 'en' | 'fr';
+  promptTemplate: PromptTemplateStrings;
+  aiPickWritingFramework: string;
+  aiPickReasoningFramework: string;
+  requiredFieldsError: (fields: string) => string;
+  fieldLabels: {
+    role: string;
+    background: string;
+    task: string;
+  };
 }
 
 /**
@@ -109,29 +178,21 @@ ${generateBannedWordsSection()}`;
  */
 export function buildPrompt(
   data: PromptFormData,
-  translations: {
-    aiPickWritingFramework: string;
-    aiPickReasoningFramework: string;
-    requiredFieldsError: (fields: string) => string;
-    fieldLabels: {
-      role: string;
-      background: string;
-      task: string;
-    };
-  }
+  options: BuildPromptOptions
 ): GeneratedPrompt {
   const errors: string[] = [];
+  const { locale, promptTemplate } = options;
 
   // Validate required fields
   const emptyFields: string[] = [];
-  if (!data.role?.trim()) emptyFields.push(translations.fieldLabels.role);
-  if (!data.background?.trim()) emptyFields.push(translations.fieldLabels.background);
-  if (!data.task?.trim()) emptyFields.push(translations.fieldLabels.task);
+  if (!data.role?.trim()) emptyFields.push(options.fieldLabels.role);
+  if (!data.background?.trim()) emptyFields.push(options.fieldLabels.background);
+  if (!data.task?.trim()) emptyFields.push(options.fieldLabels.task);
 
   if (emptyFields.length > 0) {
     return {
       prompt: '',
-      errors: [translations.requiredFieldsError(emptyFields.join(', '))],
+      errors: [options.requiredFieldsError(emptyFields.join(', '))],
     };
   }
 
@@ -139,55 +200,59 @@ export function buildPrompt(
   const parts: string[] = [];
 
   // Required fields
-  parts.push(`Act as : ${data.role.trim()}`);
-  parts.push(`Background : ${data.background.trim()}`);
-  parts.push(`Your Task: ${data.task.trim()}`);
+  parts.push(`${promptTemplate.actAs} : ${data.role.trim()}`);
+  parts.push(`${promptTemplate.background} : ${data.background.trim()}`);
+  parts.push(`${promptTemplate.yourTask}: ${data.task.trim()}`);
 
   // Optional fields
   if (data.tone?.trim()) {
-    parts.push(`Tone: ${data.tone.trim()}`);
+    parts.push(`${promptTemplate.tone}: ${data.tone.trim()}`);
   }
 
   if (data.audience?.trim()) {
-    parts.push(`Audience: ${data.audience.trim()}`);
+    parts.push(`${promptTemplate.audience}: ${data.audience.trim()}`);
   }
 
   if (data.audienceGeo?.trim()) {
-    parts.push(`Geo Context: ${data.audienceGeo.trim()}`);
+    parts.push(`${promptTemplate.geoContext}: ${data.audienceGeo.trim()}`);
   }
 
   if (data.contentFormats?.trim()) {
-    parts.push(`Formats: ${data.contentFormats.trim()}`);
+    parts.push(`${promptTemplate.formats}: ${data.contentFormats.trim()}`);
   }
 
   const writingFw = transformWritingFramework(
     data.writingFramework,
     data.writingFrameworkId,
-    translations.aiPickWritingFramework
+    options.aiPickWritingFramework
   );
   if (writingFw) {
-    parts.push(`Writing Framework: ${writingFw}`);
+    parts.push(`${promptTemplate.writingFramework}: ${writingFw}`);
   }
 
   const reasoningFw = transformReasoningFramework(
     data.reasoningFramework,
     data.reasoningFrameworkId,
-    translations.aiPickReasoningFramework
+    options.aiPickReasoningFramework
   );
   if (reasoningFw) {
-    parts.push(`Reasoning Framework: ${reasoningFw}`);
+    parts.push(`${promptTemplate.reasoningFramework}: ${reasoningFw}`);
   }
 
   if (data.variations?.trim()) {
-    parts.push(`Content Variations & Limits: ${data.variations.trim()}`);
+    parts.push(`${promptTemplate.variations}: ${data.variations.trim()}`);
   }
 
   if (data.examples?.trim()) {
-    parts.push(`Examples to Follow: ${data.examples.trim()}`);
+    parts.push(`${promptTemplate.examples}: ${data.examples.trim()}`);
   }
 
   // Join parts and add appendix
-  const prompt = parts.join('\n') + generatePromptAppendix(data.geoBoost ?? false);
+  const prompt = parts.join('\n') + generatePromptAppendix({
+    includeGeoBoost: data.geoBoost ?? false,
+    locale,
+    template: promptTemplate,
+  });
 
   return {
     prompt,
